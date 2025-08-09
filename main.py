@@ -1,3 +1,18 @@
+def quick_sort(lista, clave):
+    if len(lista) <= 1:
+        return lista
+    else:
+        pivote = lista[0]
+        menores = [x for x in lista[1:] if x[clave] < pivote[clave]]
+        iguales = [x for x in lista if x[clave] == pivote[clave]]
+        mayores = [x for x in lista[1:] if x[clave] > pivote[clave]]
+        return quick_sort(menores, clave) + iguales + quick_sort(mayores, clave)
+
+
+participantes = {}
+
+
+
 def Menu():
     opcion = 0
 
@@ -13,7 +28,9 @@ def Menu():
 
             opcion = int(opcion_input)
             if opcion == 1:
-                print()
+                agregar()
+            elif opcion == 2:
+                ordenarPorNombre()
             else:
                 print("\nOpción inválida, vuelva a intentar")
         else:
@@ -22,3 +39,5 @@ def Menu():
 
         if opcion != 4:
             input("\nPresione ENTER para continuar...")
+
+Menu()
