@@ -11,7 +11,41 @@ def quick_sort(lista, clave):
 
 participantes = {}
 
+def agregar():
 
+    cantidad = int(input("¿Cuántos participantes desea ingresar? "))
+    for i in range(cantidad):
+        print(f"\nParticipante #{i+1}:")
+        dorsal = input("Numero de dorsal: ")
+        nombre = input("Nombre completo: ")
+        edad = int(input("Edad: "))
+        categoria = input("Categoría (Joven, Adulto, viejito): ")
+
+        participantes[dorsal] = {
+            "nombre": nombre,
+            "edad": edad,
+            "categoria": categoria
+        }
+
+    print("\nRegistro completado. Participantes ingresados:")
+
+def ordenarPorNombre():
+    if not participantes:
+        print("No hay participantes registrados.")
+        return
+
+    lista_participantes = []
+
+    for dorsal, datos in participantes.items():
+        participante = {"dorsal": dorsal}
+        participante.update(datos)
+        lista_participantes.append(participante)
+
+    ordenados = quick_sort(lista_participantes, "nombre")
+
+    print("\nParticipantes ordenados por nombre:")
+    for p in ordenados:
+        print(f"- {p['nombre']} (Dorsal {p['dorsal']}, Edad {p['edad']}, Categoría: {p['categoria']})")
 
 def Menu():
     opcion = 0
